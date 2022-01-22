@@ -1,0 +1,111 @@
+<div class="lContainer ">
+
+
+  <h2>Inventory Master</h2>
+
+
+
+
+  
+
+  <div class="row">
+
+    <div class="col-sm-2">
+      <button class="btn" (click)="AddInventory()">Add Inventory</button>
+    </div>
+    <!-- <div class="col-sm-2">
+      <button class="btn" (click)="shohidefilters()">Filter's</button>
+    </div> -->
+  </div>
+  <div style="margin: 30px;" *ngIf="myDIV" id="myDIV">
+
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="row">
+          <div class="col-sm-3">
+            <label>Name</label>
+          </div>
+          <div class="col-sm-9">
+            <input placeholder="Name" type='text' name='name'>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-sm-3">
+        <div class="row">
+          <div class="col-sm-3">
+            <label>Category</label>
+          </div>
+          <div class="col-sm-9">
+            <input type='text' name='name'>
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-sm-3">
+        <div class="row">
+          <div class="col-sm-3">
+            <label>SubCategory</label>
+          </div>
+          <div class="col-sm-9">
+            <input type='text' name='name'>
+
+          </div>
+        </div>
+
+
+      </div>
+      <div class="col-sm-3">
+        <div class="row">
+
+          <div class="col-sm-11">
+            <button> Submit </button>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+
+  </div>
+
+
+  <div style="margin: 30px;">
+    <table>
+      <tr>
+        <th>Sr No</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Discount Price</th>
+        <th>Description</th>
+        <th>Category</th>
+        <th>SubCategory</th>
+        <th>Action</th>
+
+      </tr>
+      <tr *ngFor="let Data of InventoriesSlice; let index = index">
+        <td>{{Data.Pcode}}</td>
+        <td>{{Data.ProductName}}</td>
+        <td>{{Data.ProductPrice | currency: 'INR'}}</td>
+        <td>{{Data.DiscountPrice | currency: 'INR'}} <span class="Percentage">({{Data.DiscountPercentage}}%)</span></td>
+        <td>{{Data.ProductDescription}}</td>
+        <td>{{Data.Categories}}</td>
+        <td>{{Data.Subcategory}}</td>
+        <td><span (click)="EditData(Data)" style="color: blue; cursor: pointer;">Edit</span> &nbsp; &nbsp; <span (click)="DeleteData(Data)" style="color: blue; cursor: pointer;">Delete</span> </td>
+
+      </tr>
+
+    </table>
+  </div>
+
+  <div style="margin: 30px;">
+    <app-common-pagination [activePage]="currentPage" [totalRecords]="totalrecord" *ngIf="totalrecord>10"
+      [recordsPerPage]="noofrecordsperpage" (onPageChange)="pageChange($event)">
+    </app-common-pagination>
+  </div>
+
+
+
+</div>
